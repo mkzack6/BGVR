@@ -1,5 +1,6 @@
 ## 2.4. Pangenome Graph Theorems
 Experiment 2_4_1
+
 This Rust project constructs a **pangenome graph** from multiple synthetic FASTA sequences, representing different haplotypes. A **pangenome graph** captures the diversity among genomes by encoding variations within a single graph structure. Your project extracts **overlapping k-mers** (subsequences of length `k`) from input FASTA files, builds a directed graph where nodes represent k-mers, and edges indicate sequence continuity.
 
 ---
