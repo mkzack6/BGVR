@@ -44,20 +44,20 @@ Create the Cargo file
 ````nano Cargo.toml````
 
 Create src directory
-mkdir src
+````mkdir src````
 
 Create the Rust code file
-nano src/main.rs
+````nano src/main.rs````
 
 Build the Project
-cargo build --release
+````cargo build --release````
 
 Run with MPI:
 Use 4 processes for parallel execution:
-mpirun --oversubscribe -np 4 ./target/release/genomic_indexer
+````mpirun --oversubscribe -np 4 ./target/release/genomic_indexer````
 
 Check Output
-cat output.txt
+````cat output.txt````
 
 ## How It Works
 Parallelism: MPI assigns each process a rank (0–3). Each rank simulates indexing a genome chunk.
