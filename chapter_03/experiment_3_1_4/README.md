@@ -1,7 +1,6 @@
 # 3.1 Introduction to Data Structures and Algorithms
-# Conditional Hardware Acceleration in Rust
 
-**Experiment 3_1_4**
+**Experiment 3_1_4: Conditional Hardware Acceleration in Rust**
 
 This Rust project demonstrates **conditional computation offloading** to different hardware accelerators (CPU, GPU, FPGA) using Rust's feature flags. It provides a unified interface while enabling specialized code paths for different hardware targets at compile time.
 
