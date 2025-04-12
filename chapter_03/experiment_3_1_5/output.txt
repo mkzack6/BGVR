@@ -1,0 +1,1 @@
+Final merged index: {"key_rank_3": 3, "key_rank_1": 1, "key_rank_2": 2, "key_rank_0": 0}
