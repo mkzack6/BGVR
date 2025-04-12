@@ -41,7 +41,7 @@ The program uses Rust with the `mpi` crate for parallelism and `bincode`/`serde`
 Navigate to working directory
 
 Create the Cargo file 
-nano Cargo.toml
+````nano Cargo.toml````
 
 Create src directory
 mkdir src
