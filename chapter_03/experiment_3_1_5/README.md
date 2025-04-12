@@ -66,13 +66,13 @@ Merging: Rank 0 collects all indexes, deserializes them, and merges them into a 
 Output: The merged index is saved to output.txt, representing a complete genome index ready for use in tasks like read alignment.
 
 ## Workflow Diagram
-*Rank 0: {"key_rank_0": 0} -> Bytes -> Keeps + Receives -> Merges -> output.txt
+````Rank 0: {"key_rank_0": 0} -> Bytes -> Keeps + Receives -> Merges -> output.txt
 Rank 1: {"key_rank_1": 1} -> Bytes -> Sends to 0
 Rank 2: {"key_rank_2": 2} -> Bytes -> Sends to 0
 Rank 3: {"key_rank_3": 3} -> Bytes -> Sends to 0
      \           |           /
       \          v          /
-       {"key_rank_0": 0, "key_rank_1": 1, "key_rank_2": 2, "key_rank_3": 3}*
+       {"key_rank_0": 0, "key_rank_1": 1, "key_rank_2": 2, "key_rank_3": 3}````
 
 ## Why is this Project Important?
 Unified Workflow: Provides a single codebase for distributed genomic indexing, adaptable to HPC environments.
