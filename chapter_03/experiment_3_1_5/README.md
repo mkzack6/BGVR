@@ -1,4 +1,5 @@
-# Experiment 3.1.5
+# 3.1 Introduction to Data Structures and Algorithms
+## Experiment 3.1.5
 ## Genomic Indexer
 
 This Rust program demonstrates a distributed genomic indexing workflow using MPI (Message Passing Interface). It simulates indexing a genome across multiple processes (ranks), where each rank builds a partial index, sends it to rank 0, which merges the indexes and saves the result to `output.txt`. The program is designed for educational purposes, illustrating parallel computing concepts in bioinformatics, such as splitting computational tasks across nodes in a high-performance computing (HPC) cluster.
