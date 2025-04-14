@@ -2,7 +2,6 @@
 ## Experiment 4.2.1: Parallel Correlation Matrix Pipeline
 
 This project provides a Nextflow pipeline that compiles and runs a Rust program to generate a correlation adjacency matrix for simulated gene expression data. The pipeline is designed for educational purposes, demonstrating parallel computing in bioinformatics, Rust’s performance capabilities, and workflow orchestration with Nextflow. It generates random gene expression data, computes pairwise correlations in parallel, and outputs the resulting matrix as a binary file. The implementation emphasizes computational efficiency and scalability, suitable for analyzing high-dimensional biological datasets.
-
 ## Breakdown of the Project
 
 #### Dependencies
@@ -16,15 +15,18 @@ The project consists of a Nextflow script (`pipeline.nf`) and a Rust program (`p
 **Rust Program (`parallel_correlation/Cargo.toml`)**:
 ```toml
 [dependencies]
-clap = { version = "4.5", features = ["derive"] }
-ndarray = "0.16"
-rand = "0.9"
+rayon = "1.10.0"
+ndarray = "0.16.1"
+rand = "=0.9.0"
+rand_core = "=0.9.0"
+rand_chacha = "=0.9.0"
 ```
-clap: Parses command-line arguments for `--num-genes`, `--num-samples`, and `--output`.
+**rayon:** Enables parallel computation of pairwise correlations.
 
-ndarray: Provides efficient matrix operations for correlation calculations.
+**ndarray:** Provides efficient matrix operations for data generation and correlation calculations.
 
-rand: Generates random gene expression data for simulation.
+**rand, rand_core, rand_chacha:** Generate high-quality random numbers for synthetic gene expression data.
+
 ### Feature Flags
 
 The Rust program has no feature flags, using a single workflow to generate and process data with configurable parameters:
@@ -51,7 +53,9 @@ The Nextflow pipeline has one process:
 
 --Executes the binary with `--num-genes`, `--num-samples`, and `--output`` to generate the matrix.
 
---Publishes the output to the project root using `publishDi`r.
+--Includes debugging commands (`echo`, `ls`) to verify file creation.
+
+--Uses `publishDir` to copy the output to the project root and `sync` for reliable file writes..
 
 -Workflow: Executes `buildAdjacencyMatrix` with DSL2 for modularity.
 
@@ -59,31 +63,31 @@ The Nextflow pipeline has one process:
 
 -Command-Line Parsing:
 
---Uses `clap` to handle `--num-genes`, `--num-samples`, and `--output`.
+--Uses `std::env` to parse `--num-genes`, `--num-samples`, and `--output` manually, ensuring lightweight execution.
 
 -Matrix Generation:
 
---Generates a random `num_genes x num_samples` matrix using `rand`.
+--Generates a random `num_genes x num_samples` matrix using `rand::thread_rng()` and `gen_range()` (e.g., `0.0..1000.0` for 1000x50).
 
---Each element represents simulated gene expression (type `f64`).
+--Stores data in `ndarray::Array2<f64>` for efficient access.
 
 -Correlation Calculation:
 
---Computes pairwise Pearson correlations in parallel using `ndarray`.
+--Computes pairwise Pearson correlations in parallel using `rayon`, targeting the upper triangle and mirroring results.
 
---Produces a `num_genes x num_genes` symmetric matrix.
+--Uses `Arc<Mutex<Array2<f64>>>` for thread-safe updates to the `num_genes x num_genes` matrix.
 
 -Output:
 
 --Writes the matrix as a binary file (`partial_adjacency.bin`) using `f64` values.
 
---Verifies file existence before exiting.
+--Includes `writer.flush()` and `file.sync_all()` to ensure file integrity.
+
+--Verifies file existence with `Path::new().exists()` to confirm successful creation.
 
 -Main Function:
 
---Parses arguments.
-
---Generates data, computes correlations, and saves the matrix.
+--Parses arguments, generates data, computes correlations, and saves the matrix.
 
 --Outputs matrix size (~8MB for 1000x1000).
 ## Program Execution
@@ -115,14 +119,14 @@ executor >  local (1)
 
 -`partial_adjacency.bin`: Binary file containing a 1000x1000 `f64` correlation matrix (~8MB).
 
--Located in (replace with project directory) (via `publishDir`) and `work/5b/bdfff5.../`.
+-Located in `cd ~/BGVR/chapter_04/experiment_4_2_1` (via `publishDir`) and `work/5b/bdfff5.../`.
 
 ## Why is this Project Important?
 Bioinformatics Workflow: Demonstrates correlation analysis, critical for gene expression studies and co-expression networks.
 
 Pipeline Orchestration: Introduces Nextflow for automating Rust compilation and execution, scalable to larger datasets.
 
-Parallel Processing: Leverages `ndarray` for efficient matrix operations, showcasing Rust’s concurrency.
+Parallel Processing: Leverages `rayon` for efficient matrix operations, showcasing Rust’s concurrency.
 
 Data Structures: Uses dense matrices for correlation storage, relevant to high-dimensional biological data.
 
