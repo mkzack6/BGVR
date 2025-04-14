@@ -56,7 +56,8 @@ cargo build --release
 # Run with custom file
 ./target/release/fasta_parser custom.fasta
 ```
-Example Output
+Example Output:
+
 `Processed 3 sequences`
 
 ## Why is this Project Important?
