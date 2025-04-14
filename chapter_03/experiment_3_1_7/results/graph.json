@@ -1,0 +1,1 @@
+{"GGCCA":{"kmer":"GGCCA","edges":["GCCAT"]},"TACGT":{"kmer":"TACGT","edges":["ACGTA"]},"ACGTA":{"kmer":"ACGTA","edges":["CGTAC"]},"GCCAT":{"kmer":"GCCAT","edges":["CCATC"]},"CGTAC":{"kmer":"CGTAC","edges":["GTACG"]},"CATCG":{"kmer":"CATCG","edges":["ATCGC"]},"ATCGC":{"kmer":"ATCGC","edges":[]},"GTACG":{"kmer":"GTACG","edges":["TACGT"]},"CCATC":{"kmer":"CCATC","edges":["CATCG"]}}
