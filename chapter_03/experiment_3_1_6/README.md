@@ -13,11 +13,6 @@ The project uses:
 - **serde_json**: For outputting results in JSON format.
 
 ```toml
-[package]
-name = "fasta_parser"
-version = "0.1.0"
-edition = "2021"
-
 [dependencies]
 needletail = "0.5.1"
 serde = { version = "1.0", features = ["derive"] }
