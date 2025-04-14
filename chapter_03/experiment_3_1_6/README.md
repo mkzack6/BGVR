@@ -31,17 +31,28 @@ Default: Parses a FASTA file (defaults to example.fasta), computes GC content, a
 The implementation is contained in a single module (main.rs) with key components:
 
 -SeqRecord Struct:
---Stores a sequence’s ID, length, and GC content.
---Uses serde for JSON serialization.
---Example: {"id":"seq1","seq_len":9,"gc_content":0.4444444444444444}.
+
+  --Stores a sequence’s ID, length, and GC content.
+
+  --Uses serde for JSON serialization.
+
+  --Example: {"id":"seq1","seq_len":9,"gc_content":0.4444444444444444}.
+
 -calc_gc_content Function:
---Computes the fraction of G and C nucleotides in a sequence.
---Operates on a borrowed Cow<'_, [u8]> slice from needletail for efficiency.
---Time complexity: O(ℓ) per sequence, where ℓ is sequence length.
+
+  --Computes the fraction of G and C nucleotides in a sequence.
+
+  --Operates on a borrowed Cow<'_, [u8]> slice from needletail for efficiency.
+
+  --Time complexity: O(ℓ) per sequence, where ℓ is sequence length.
+
 -main Function:
---Reads a FASTA file using needletail::parse_fastx_file.
---Streams records to minimize memory usage.
---Collects SeqRecords and writes to output.json.
+
+  --Reads a FASTA file using needletail::parse_fastx_file.
+
+  --Streams records to minimize memory usage.
+
+  --Collects SeqRecords and writes to output.json.
 ### Program Execution
 The `main()` function processes a FASTA file, computes statistics, and outputs JSON. It accepts a file path via command-line argument or defaults to `example.fasta`.
 
