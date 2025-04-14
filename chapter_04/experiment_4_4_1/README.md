@@ -65,3 +65,39 @@ The program processes hardcoded genomic coverage data to produce a peak file in 
 Install Rust/Cargo:
 `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env`
+**Setup:** Ensure `peak_calling/` (containing `Cargo.toml` and `src/main.rs`) is in the project directory:
+**Run Program:**
+`cd ~/BGVR/chapter_04/experiment_4_4_1/peak_calling
+cargo build --release
+./target/release/peak_calling`
+**Example Output:**
+`-rw-r--r-- 1 zack zack 104 Apr 15 01:41 partial_peaks.bed`
+**Generated Files:**
+
+`partial_peaks.bed`: Tab-separated file containing chromosome, position, and peak value (~104 bytes).
+
+Located in `~/BGVR/chapter_04/experiment_4_4_1/peak_calling/`.
+
+## Why is this Project Important?
+
+**Bioinformatics Workflow:** Demonstrates peak calling, critical for identifying regulatory regions in genomic studies like ChIP-seq.
+
+**Parallel Processing:** Leverages `rayon` for efficient analysis of chromosomal data, showcasing Rust’s concurrency.
+
+**Data Processing:** Introduces smoothing techniques to handle noisy biological signals, relevant to real-world datasets.
+
+**Educational Value:** Teaches students Rust and parallel computing in a bioinformatics context, aligning with Chapter 4’s focus on high-performance workflows.
+
+**Scalability:** Produces output suitable for integration into larger HPC pipelines, where peak files can be merged or analyzed further.
+
+## Next Steps / Improvements
+
+**Input Flexibility:** Add support for reading coverage data from files (e.g., CSV, BAM, bigWig).
+
+**Parameterization:** Introduce command-line arguments for `window`, `threshold`, and `do_smooth`.
+
+**Pipeline Integration:** Wrap in a Nextflow or Snakemake pipeline for automated HPC workflows.
+
+**Peak Refinement:** Implement merging of nearby peaks or filtering of spurious calls.
+
+**Performance:** Test with larger datasets to evaluate parallel scaling (e.g., multiple chromosomes).
