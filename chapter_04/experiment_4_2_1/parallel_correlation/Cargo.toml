@@ -1,0 +1,11 @@
+[package]
+name = "parallel_correlation"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rayon = "1.10.0"
+ndarray = "0.16.1"
+rand = "=0.9.0"
+rand_core = "=0.9.0"
+rand_chacha = "=0.9.0"
