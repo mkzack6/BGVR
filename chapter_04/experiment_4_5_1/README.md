@@ -63,18 +63,18 @@ Located in the project root.
 
 ## Why is this Project Important?
 
-Bioinformatics Workflow: Demonstrates splicing graph construction, critical for transcriptomics and isoform detection.
-Parallel Processing: Leverages `rayon` for efficient graph building, showcasing Rust’s concurrency.
-Data Structures: Uses hash maps for graph representation, relevant to genomic data.
-Educational Value: Teaches students Rust, parallel computing, and bioinformatics in a reproducible pipeline.
+* **Bioinformatics Workflow**: Demonstrates splicing graph construction, critical for transcriptomics and isoform detection.
+* **Parallel Processing**: Leverages `rayon` for efficient graph building, showcasing Rust’s concurrency.
+* **Data Structures**: Uses hash maps for graph representation, relevant to genomic data.
+* **Educational Value**: Teaches students Rust, parallel computing, and bioinformatics in a reproducible pipeline.
 
 ## Next Steps / Improvements
 
-Real Data: Process actual RNA-seq alignments (e.g., BAM files) using CIGAR strings.
-Output Formats: Support standard formats like GFA or JSON for interoperability.
-Validation: Add checks for exon overlaps and chromosome consistency.
-Optimization: Use sparse data structures for large graphs to reduce memory usage.
-Benchmarking: Profile performance for larger datasets (e.g., millions of alignments).
-Integration: Link with transcript assemblers to validate splicing patterns.
+* **Real Data**: Process actual RNA-seq alignments (e.g., BAM files) using CIGAR strings.
+* **Output Formats**: Support standard formats like GFA or JSON for interoperability.
+* **Validation**: Add checks for exon overlaps and chromosome consistency.
+* **Optimization**: Use sparse data structures for large graphs to reduce memory usage.
+* **Benchmarking**: Profile performance for larger datasets (e.g., millions of alignments).
+* **Integration**: Link with transcript assemblers to validate splicing patterns.
 
 
