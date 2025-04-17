@@ -3,20 +3,15 @@ use std::collections::HashMap;
 use std::fs::File;
 use std::io::{BufWriter, Write};
 
-/// Represents an exon or a segment in the splicing graph.
-///
-/// The fields are prefixed with `_` to avoid compiler warnings
-/// if they are currently unused.
-#[derive(Debug, Clone)]
+/// Represents an exon or genomic segment in a splicing graph.
+/// Fields are placeholders for future boundary validation.
+#[derive(Debug, Clone, PartialEq)]
 struct ExonSegment {
-    _start: usize,
-    _end: usize,
+    _start: usize, // Planned: exon start position
+    _end: usize,   // Planned: exon end position
 }
 
 /// Represents alignment data for one read.
-///
-/// The field is prefixed with `_` to avoid compiler warnings
-/// if it is currently unused.
 #[derive(Debug, Clone)]
 struct Alignment {
     _chrom: String,
@@ -24,21 +19,22 @@ struct Alignment {
     end: usize,
 }
 
-/// Graph-like structure holding exons and splice junctions.
-/// - adjacency: a map from exon_key (start, end) to a vector of (ExonSegment, coverage)
+/// A graph representing exons and splice junctions.
+/// `adjacency` maps exon coordinates (start, end) to adjacent exons and their coverage.
 #[derive(Debug, Default, Clone)]
 struct SplicingGraph {
     adjacency: HashMap<(usize, usize), Vec<(ExonSegment, u64)>>,
 }
 
 impl SplicingGraph {
-    /// Adds or updates a junction from an exon (exon_key) to a target exon.
+    /// Adds or updates a junction with dynamic coverage.
     fn add_junction(&mut self, exon_key: (usize, usize), target_exon: ExonSegment) {
-        let coverage = 1;
-        self.adjacency
-            .entry(exon_key)
-            .or_default()
-            .push((target_exon, coverage));
+        let entry = self.adjacency.entry(exon_key).or_default();
+        if let Some((_, cov)) = entry.iter_mut().find(|(exon, _)| exon._start == target_exon._start && exon._end == target_exon._end) {
+            *cov += 1; // Increment coverage
+        } else {
+            entry.push((target_exon, 1)); // New junction
+        }
     }
 
     /// Merges another SplicingGraph into the current one.
@@ -53,11 +49,13 @@ impl SplicingGraph {
 fn process_alignment_chunk(batch: &[Alignment]) -> SplicingGraph {
     let mut local_graph = SplicingGraph::default();
     for align in batch {
-        // We do not use `_chrom`, but we do use (align.start, align.end) as exon_key
+        if align.start >= align.end {
+            continue; // Skip invalid alignments
+        }
         let exon_key = (align.start, align.end);
         let target_exon = ExonSegment {
-            _start: align.start + 50,
-            _end: align.end + 100,
+            _start: align.start, // TODO: Derive from CIGAR or annotations
+            _end: align.end,
         };
         local_graph.add_junction(exon_key, target_exon);
     }
@@ -65,7 +63,6 @@ fn process_alignment_chunk(batch: &[Alignment]) -> SplicingGraph {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // Hypothetical alignment data
     let all_alignments = vec![
         Alignment {
             _chrom: "chr1".to_string(),
@@ -82,19 +79,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             start: 500,
             end: 700,
         },
-        // ...
     ];
 
-    // Define a chunk size
-    let chunk_size = 100;
+    if all_alignments.is_empty() {
+        return Err("No alignments provided".into());
+    }
 
-    // Partition the alignments into chunks
-    let chunks: Vec<_> = all_alignments
-        .chunks(chunk_size)
-        .map(|c| c.to_vec())
-        .collect();
+    // Chunk size balances memory and parallelism
+    let chunk_size = (all_alignments.len() / rayon::current_num_threads()).max(1);
+    let chunks: Vec<_> = all_alignments.chunks(chunk_size).map(|c| c.to_vec()).collect();
 
-    // Build and merge partial splicing graphs in parallel
     let final_graph = chunks
         .into_par_iter()
         .map(|batch| process_alignment_chunk(&batch))
@@ -106,10 +100,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             },
         );
 
-    // Serialize or write the final splicing graph to disk
     let out_file = File::create("partial_splicing_graph.bin")?;
     let mut writer = BufWriter::new(out_file);
-    writer.write_all(b"Serialized splicing graph example\n")?;
+    writer.write_all(b"Splicing graph\n")?;
     writer.write_all(format!("{:#?}", final_graph).as_bytes())?;
 
     println!("Splicing graph has been successfully written.");
