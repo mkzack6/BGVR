@@ -1,4 +1,4 @@
-Serialized splicing graph example
+Splicing graph
 SplicingGraph {
     adjacency: {
         (
@@ -7,20 +7,8 @@ SplicingGraph {
         ): [
             (
                 ExonSegment {
-                    _start: 550,
-                    _end: 800,
-                },
-                1,
-            ),
-        ],
-        (
-            100,
-            200,
-        ): [
-            (
-                ExonSegment {
-                    _start: 150,
-                    _end: 300,
+                    _start: 500,
+                    _end: 700,
                 },
                 1,
             ),
@@ -31,8 +19,20 @@ SplicingGraph {
         ): [
             (
                 ExonSegment {
-                    _start: 200,
-                    _end: 400,
+                    _start: 150,
+                    _end: 300,
+                },
+                1,
+            ),
+        ],
+        (
+            100,
+            200,
+        ): [
+            (
+                ExonSegment {
+                    _start: 100,
+                    _end: 200,
                 },
                 1,
             ),
