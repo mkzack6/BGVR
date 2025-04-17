@@ -28,34 +28,20 @@ The program has one main process:
 ### Implementation Modules
 Rust Program (`peak_calling/src/main.rs`):
 
--Data Structure:
-
---Defines `ChromCoverage` to store chromosome names and coverage data as `Vec<f64>`.
-
---Hardcodes sample data (e.g., `chr2` with 8 positions).
-
--Smoothing:
-
---Implements `smooth_coverage` using a prefix-sum approach for O(n) rolling-window averaging.
-
---Reduces noise in coverage profiles when `do_smooth=true`.
-
--Peak Calling:
-
---Uses `local_peak_call` to slide a window, computing mean coverage and marking peaks above `threshold`.
-
---Processes chromosomes in parallel with `rayon`’s `into_par_iter()`, ensuring thread-safe data handling.
-
--Output:
-
---Writes peaks to `partial_peaks.bed` in a BED-like format (`chrom\tpos\tvalue`).
-
---Uses `BufWriter` with `flush()` to ensure complete file output.
-
--Main Function:
-
---Initializes data, calls `call_peaks_and_smooth`, and saves results.
-
+**Data Structure**:
+- Defines `ChromCoverage` to store chromosome names and coverage data as `Vec<f64>`.
+- Hardcodes sample data (e.g., `chr2` with 8 positions).
+**Smoothing**:
+- Implements `smooth_coverage` using a prefix-sum approach for O(n) rolling-window averaging.
+- Reduces noise in coverage profiles when `do_smooth=true`.
+**Peak Calling**:
+- Uses `local_peak_call` to slide a window, computing mean coverage and marking peaks above `threshold`.
+- Processes chromosomes in parallel with `rayon`’s `into_par_iter()`, ensuring thread-safe data handling.
+**Output**:
+- Writes peaks to `partial_peaks.bed` in a BED-like format (`chrom\tpos\tvalue`).
+- Uses `BufWriter` with `flush()` to ensure complete file output.
+**Main Function**:
+- Initializes data, calls `call_peaks_and_smooth`, and saves results.
 Outputs ~104 bytes for `chr2` peaks (e.g., positions 0–7, values ~4.458–6.611).
 ### Program Execution
 The program processes hardcoded genomic coverage data to produce a peak file in a simplified BED-like format. Steps to execute:
