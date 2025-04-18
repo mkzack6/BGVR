@@ -5,14 +5,14 @@ This project provides a Rust program to perform parallel variant calling on geno
 ### Dependencies
 The project consists of a single Rust program (`naive_variant_caller`). Dependencies are:
 Rust Program (`naive_variant_caller/Cargo.toml`):
-
+```
 [dependencies]
 anyhow = "1.0"
 rayon = "1.7"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 clap = { version = "4.0", features = ["derive"] }
-
+```
 - **anyhow**: Simplifies error handling for robust execution.
 - **rayon**: Enables parallel processing of variant hypotheses within chunks.
 - **serde**: Provides serialization/deserialization for JSON input/output.
