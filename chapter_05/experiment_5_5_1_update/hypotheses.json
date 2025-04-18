@@ -1,0 +1,6 @@
+[
+    {"chrom": "chr1", "position": 100, "ref_base": "A", "alt_base": "G"},
+    {"chrom": "chr1", "position": 200, "ref_base": "C", "alt_base": "T"},
+    {"chrom": "chr2", "position": 300, "ref_base": "T", "alt_base": "C"},
+    {"chrom": "chr2", "position": 400, "ref_base": "G", "alt_base": "A"}
+]

@@ -1,0 +1,23 @@
+{
+    "chr1:100": [
+        {"base": "A", "quality": 30},
+        {"base": "A", "quality": 25},
+        {"base": "G", "quality": 20},
+        {"base": "A", "quality": 28},
+        {"base": "N", "quality": 15}
+    ],
+    "chr1:200": [
+        {"base": "C", "quality": 25}
+    ],
+    "chr2:300": [
+        {"base": "T", "quality": 30},
+        {"base": "T", "quality": 30},
+        {"base": "N", "quality": 10},
+        {"base": "T", "quality": 25}
+    ],
+    "chr2:400": [
+        {"base": "G", "quality": 20},
+        {"base": "A", "quality": 15},
+        {"base": "N", "quality": 10}
+    ]
+}
