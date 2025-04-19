@@ -4,7 +4,7 @@ This project provides a Rust program to detect breakpoints indicative of structu
 ## Breakdown of the Project
 ### Dependencies
 The project consists of a single Rust program (`experiment_5_6_1`). Dependencies are defined in `experiment_5_6_1/Cargo.toml`:
-```
+```toml
 [dependencies]
 anyhow = "1.0"
 rayon = "1.7"
@@ -78,7 +78,7 @@ Ensure the `experiment_5_6_1/` directory (containing `Cargo.toml` and `src/main.
 
 
 Verify `alignments.json` exists in the same directory, e.g.:
-```
+```json
 [
     {"read_id": "read1", "chrom": "chr1", "start": 1000, "cigar": "50M", "orientation": "+"},
     {"read_id": "read1", "chrom": "chr1", "start": 5000, "cigar": "50M", "orientation": "+"},
