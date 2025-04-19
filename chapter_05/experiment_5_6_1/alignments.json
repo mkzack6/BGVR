@@ -1,0 +1,6 @@
+[
+    {"read_id": "read1", "chrom": "chr1", "start": 1000, "cigar": "50M", "orientation": "+"},
+    {"read_id": "read1", "chrom": "chr1", "start": 5000, "cigar": "50M", "orientation": "+"},
+    {"read_id": "read2", "chrom": "chr2", "start": 2000, "cigar": "50M", "orientation": "-"},
+    {"read_id": "read2", "chrom": "chr3", "start": 3000, "cigar": "50M", "orientation": "+"}
+]
