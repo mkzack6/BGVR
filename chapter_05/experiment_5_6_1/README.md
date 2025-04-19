@@ -4,13 +4,14 @@ This project provides a Rust program to detect breakpoints indicative of structu
 ## Breakdown of the Project
 ### Dependencies
 The project consists of a single Rust program (`experiment_5_6_1`). Dependencies are defined in `experiment_5_6_1/Cargo.toml`:
+```
 [dependencies]
 anyhow = "1.0"
 rayon = "1.7"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 clap = { version = "4.3", features = ["derive"] }
-
+```
 
 - **anyhow**: Provides flexible error handling for robust program execution.
 - **rayon**: Enables parallel processing of read groups to detect breakpoints efficiently.
