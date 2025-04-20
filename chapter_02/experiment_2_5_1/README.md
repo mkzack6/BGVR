@@ -3,7 +3,7 @@
 This project provides a Rust program (`rust_genomics`) to perform binary classification on gene expression data, such as those derived from RNA sequencing or microarray experiments. The program is designed for educational purposes, demonstrating machine learning in bioinformatics using Rust’s high-performance capabilities and the tch crate for tensor operations. It processes gene expression data in CSV format, trains a neural network to predict binary labels (e.g., disease vs. healthy), and outputs training metrics. The implementation leverages Rust’s integration with LibTorch for efficient model training, making it suitable for analyzing genomic datasets in high-performance computing (HPC) environments.
 ## Breakdown of the Project
 ### Dependencies
-The project consists of a single Rust program (rust_genomics). Dependencies are assumed to be defined in Cargo.toml:
+The project consists of a single Rust program (`rust_genomics`). Dependencies are assumed to be defined in Cargo.toml:
 ```toml
 [dependencies]
 tch = "0.19.0"
@@ -11,7 +11,7 @@ csv = "1.3"
 anyhow = "1.0"
 ```
 
-- **tch**: Provides tensor operations and neural network training via LibTorch, enabling machine learning on gene expression data.
+- **tch**: Provides tensor operations and neural network training via `LibTorch`, enabling machine learning on gene expression data.
 - **csv**: Supports parsing of CSV files containing gene expression data and labels.
 - **anyhow**: Facilitates flexible error handling for robust program execution.
 
