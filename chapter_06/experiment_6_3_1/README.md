@@ -11,9 +11,12 @@ The project consists of a Rust program (`bcf_filter_tool`) and a Nextflow pipeli
 **Rust Dependencies (`Cargo.toml`)**:
 ```toml
 [dependencies]
-bio = "1.2"
-clap = { version = "4.5", features = ["derive"] }
 anyhow = "1.0"
+clap = { version = "4.4", features = ["derive"] }
+env_logger = "0.11.7"
+log = "0.4"
+rayon = "1.8"
+rust-htslib = "0.49.0"
 ```
 - `bio`: Provides BCF file parsing and manipulation for genomic variant data.
 - `clap`: Supports command-line argument parsing for filter parameters (e.g., `--min-qual`, `--min-depth`).
