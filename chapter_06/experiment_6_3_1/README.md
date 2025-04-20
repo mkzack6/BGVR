@@ -18,9 +18,12 @@ log = "0.4"
 rayon = "1.8"
 rust-htslib = "0.49.0"
 ```
-- `bio`: Provides BCF file parsing and manipulation for genomic variant data.
-- `clap`: Supports command-line argument parsing for filter parameters (e.g., `--min-qual`, `--min-depth`).
-- `anyhow`: Facilitates flexible error handling for robust execution.
+- `anyhow`: Robust error handling for file I/O and record processing.
+- `clap`: Command-line parsing for user-defined filter parameters.
+- `env_logger`: Configurable logging via `RUST_LOG` for runtime monitoring.
+- `log`: Structured logging for debugging and metrics.
+- `rayon`: Parallel processing for efficient filtering of large BCF datasets.
+- `rust-htslib`: Core BCF parsing and manipulation for genomic variants.
 
 **System Dependencies**:
 - `Nextflow`: Orchestrates the pipeline, managing parallel execution across genomic chunks.
