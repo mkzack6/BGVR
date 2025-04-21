@@ -1,0 +1,11 @@
+[package]
+name = "bam_counter"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.0", features = ["derive"] }
+anyhow = "1.0"
+log = "0.4"
+rayon = "1.7"
+rust-htslib = "0.49.0"
