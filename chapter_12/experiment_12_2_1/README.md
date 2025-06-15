@@ -70,7 +70,7 @@ cp target/release/rust_sparse_index .
 
 ## 📁 Project Structure
 
-`
+```
 genomic-sparse-index/
 ├── src/
 │   └── main.rs              # Main Rust application
@@ -83,7 +83,7 @@ genomic-sparse-index/
 ├── setup.sh                # Automated setup script
 ├── test_pipeline.sh        # Comprehensive test suite
 └── README.md               # This file
-`
+```
 
 ## 🔧 Usage
 
