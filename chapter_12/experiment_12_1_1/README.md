@@ -71,26 +71,21 @@ bash
 
 ## 📁 Directory Structure
 
-
+```
 population_genomics_pipeline/
 ├── Cargo.toml                    # Rust dependencies and project configuration
 ├── main.nf                       # Nextflow pipeline definition
 ├── nextflow.config               # Pipeline execution configuration
-├── README.md                     # This documentation file
-├── LICENSE                       # MIT license
+├── README.md                     # This documentation fil
 ├── src/
-│   └── bin/
 │       ├── generate_data.rs      # Synthetic data generator
 │       └── population_analysis.rs # Main analysis pipeline
-├── scripts/                      # Helper scripts
-│   ├── run_pipeline.sh           # Main pipeline execution script
-│   ├── test_pipeline.sh          # Quick test runner
-│   └── generate_data_only.sh     # Data generation only
-├── data/                         # Input data directory
-│   ├── genotypes.csv             # Generated genotype matrix
-│   ├── sample_metadata.csv       # Sample information
-│   └── variant_metadata.csv      # Variant annotations
-├── results/                      # Analysis output directory
+├── run_pipeline.sh           # Main pipeline execution script
+├── test_pipeline.sh          # Quick test runner
+└── generate_data_only.sh     # Data generation only
+├── genotypes.csv             # Generated genotype matrix
+├── sample_metadata.csv       # Sample information
+└── variant_metadata.csv      # Variant annotations
 │   ├── qc/                       # Quality control results
 │   ├── pca/                      # PCA analysis results
 │   ├── population_structure/     # Population genetics results
@@ -99,7 +94,7 @@ population_genomics_pipeline/
 │   └── summary_statistics.txt    # Text summary
 ├── target/                       # Rust compilation artifacts
 └── work/                         # Nextflow execution cache
-
+```
 
 ## 🔧 Pipeline Components
 
